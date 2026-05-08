@@ -1,0 +1,95 @@
+---
+layout: default
+title: 星辰阅读
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - 发现好故事</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="/">星辰阅读</a></h1>
+      <nav>
+        <a href="#">首页</a>
+        <a href="#">排行榜</a>
+        <a href="#">分类</a>
+        <a href="#">书单</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主推荐区（简单静态轮播感觉） -->
+  <section class="hero">
+    <div class="container">
+      <h2>🔥 本周强推</h2>
+      <div class="hero-grid">
+        {% assign featured = site.data.novels | where: "rank", 1 %}
+        {% for novel in featured limit:3 %}
+        <div class="hero-card">
+          <img src="{{ novel.cover }}" alt="{{ novel.title }}">
+          <div class="hero-info">
+            <h3>{{ novel.title }}</h3>
+            <p class="author">{{ novel.author }} · {{ novel.category }}</p>
+            <p class="intro">{{ novel.intro | truncate: 50 }}</p>
+            <a href="{{ novel.link }}" class="btn">立即阅读</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 排行榜区 -->
+  <section class="rank-section">
+    <div class="container">
+      <h2>📊 畅销榜</h2>
+      <div class="rank-list">
+        {% assign sorted_novels = site.data.novels | sort: "rank" %}
+        {% for novel in sorted_novels limit:10 %}
+        <div class="rank-item">
+          <span class="rank-num">{{ forloop.index }}</span>
+          <img src="{{ novel.cover }}" alt="{{ novel.title }}">
+          <div class="book-info">
+            <h4>{{ novel.title }}</h4>
+            <p class="author">{{ novel.author }} · {{ novel.category }}</p>
+            <p class="intro">{{ novel.intro }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类推荐（模拟横向卡片） -->
+  <section class="category-section">
+    <div class="container">
+      <h2>📚 分类精选</h2>
+      <div class="card-grid">
+        {% for novel in site.data.novels limit:8 %}
+        <div class="novel-card">
+          <img src="{{ novel.cover }}" alt="{{ novel.title }}">
+          <div class="card-body">
+            <h4>{{ novel.title }}</h4>
+            <p class="author">{{ novel.author }}</p>
+            <span class="category-tag">{{ novel.category }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container">
+      <p>© 2026 星辰阅读 · 由 Jekyll & GitHub Pages 驱动</p>
+    </div>
+  </footer>
+</body>
+</html>
