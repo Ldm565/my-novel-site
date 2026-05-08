@@ -8,10 +8,11 @@ title: 星辰阅读
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} - 发现好故事</title>
+  <!-- 3秒后跳转到百度，不需要可删除下面这行 -->
+  <meta http-equiv="refresh" content="3; url=https://www.baidu.com">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <!-- 头部导航 -->
   <header class="site-header">
     <div class="container">
       <h1 class="logo"><a href="/">星辰阅读</a></h1>
@@ -24,7 +25,6 @@ title: 星辰阅读
     </div>
   </header>
 
-  <!-- 主推荐区（简单静态轮播感觉） -->
   <section class="hero">
     <div class="container">
       <h2>🔥 本周强推</h2>
@@ -45,7 +45,6 @@ title: 星辰阅读
     </div>
   </section>
 
-  <!-- 排行榜区 -->
   <section class="rank-section">
     <div class="container">
       <h2>📊 畅销榜</h2>
@@ -53,7 +52,7 @@ title: 星辰阅读
         {% assign sorted_novels = site.data.novels | sort: "rank" %}
         {% for novel in sorted_novels limit:10 %}
         <div class="rank-item">
-          <span class="rank-num">{{ forloop.index }}</span>
+          <span class="rank-num">{{ novel.rank }}</span>
           <img src="{{ novel.cover }}" alt="{{ novel.title }}">
           <div class="book-info">
             <h4>{{ novel.title }}</h4>
@@ -66,7 +65,6 @@ title: 星辰阅读
     </div>
   </section>
 
-  <!-- 分类推荐（模拟横向卡片） -->
   <section class="category-section">
     <div class="container">
       <h2>📚 分类精选</h2>
@@ -85,7 +83,6 @@ title: 星辰阅读
     </div>
   </section>
 
-  <!-- 页脚 -->
   <footer>
     <div class="container">
       <p>© 2026 星辰阅读 · 由 Jekyll & GitHub Pages 驱动</p>
