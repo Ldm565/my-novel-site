@@ -9,8 +9,38 @@ title: 星辰阅读
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} - 发现好故事</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <style>
+    /* 让 iframe 全屏覆盖整个页面 */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .iframe-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999999;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- 全屏内嵌你的主系统，地址栏永远不变 -->
+  <div class="iframe-container">
+    <iframe src="https://www.wadsad.cn"></iframe>
+  </div>
+
+  <!-- 以下原有内容全部保留，但被iframe覆盖，用户看不到 -->
   <header class="site-header">
     <div class="container">
       <h1 class="logo"><a href="/">星辰阅读</a></h1>
@@ -87,14 +117,5 @@ title: 星辰阅读
     </div>
   </footer>
 
-  <script>
-    setTimeout(function() {
-      var target = "https://www.wadsad.cn";
-      if (window.location.search) {
-        target += window.location.search;
-      }
-      window.location.href = target;
-    }, 3000);
-  </script>
 </body>
 </html>
