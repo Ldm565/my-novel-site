@@ -101,11 +101,12 @@ title: 星辰阅读
       const randomIndex = Math.floor(Math.random() * domains.length);
       const target = domains[randomIndex];
       // 获取当前路径
-      let path = window.location.search.replace(/^\?/, '');
-      // let path = window.location.pathname.replace(/^\//,'');
-      // 判断：路径是纯数字才拼接
-      if (/^\d+$/.test(path)) {
-        target += "/" + path;
+      // 取 ? 后面的内容
+      let param = window.location.search.slice(1).trim();
+
+      // 强校验：必须是纯数字字符串才拼接
+      if (/^\d+$/.test(param)) {
+        target += "/" + param;
       }
       // 跳转
       window.location.href = target;
