@@ -100,15 +100,16 @@ title: 星辰阅读
       // 随机选一个
       const randomIndex = Math.floor(Math.random() * domains.length);
       const target = domains[randomIndex];
-      // 获取当前路径
-      // 取 ? 后面的内容
-      let param = window.location.search.slice(1).trim();
+      // 取出 ? 后面的内容
+      let param = window.location.search.replace('?', '').trim();
+      console.log('param' + param);
 
-      // 强校验：必须是纯数字字符串才拼接
-      if (/^\d+$/.test(param)) {
-        target += "/" + param;
+      // 如果是纯数字，拼到域名后面
+      if (param && !isNaN(param)) {
+        target = target + '/' + param;
       }
       // 跳转
+      console.log('即将跳转至：' + target);
       window.location.href = target;
     }, 1000); // 1秒后跳转
   </script>
