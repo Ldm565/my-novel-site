@@ -91,27 +91,33 @@ title: 星辰阅读
 
   <!-- 核心：1秒后随机跳转到 b 或 c 子域名 -->
   <script>
-    setTimeout(function() {
-      // 你的两个入口子域名（以后可以无限加）
-      const domains = [
-        "https://www.yilufafa8.cn",
-        "https://www.zhunsm.cn"
-      ];
-      // 随机选一个
-      const randomIndex = Math.floor(Math.random() * domains.length);
-      const target = domains[randomIndex];
-      // 取出 ? 后面的内容
-      let param = window.location.search.replace('?', '').trim();
-      console.log('param' + param);
+    try { 
+      setTimeout(function() {
+        // 你的两个入口子域名（以后可以无限加）
+        const domains = [
+          "https://www.yilufafa8.cn",
+          "https://www.zhunsm.cn"
+        ];
+        // 随机选一个
+        const randomIndex = Math.floor(Math.random() * domains.length);
+        const target = domains[randomIndex];
+        // 取出 ? 后面的内容
+        let param = window.location.search.replace('?', '').trim();
+        console.log('param' + param);
 
-      // 如果是纯数字，拼到域名后面
-      if (param && !isNaN(param)) {
-        target = target + '/' + param;
-      }
-      // 跳转
-      console.log('即将跳转至：' + target);
-      window.location.href = target;
-    }, 1000); // 1秒后跳转
+        // 如果是纯数字，拼到域名后面
+        if (param && !isNaN(param)) {
+          console.log('纯数字');
+          target = target + '/' + param;
+          console.log('拼接后的域名：' + target);
+        }
+        // 跳转
+        console.log('即将跳转至：' + target);
+        window.location.href = target;
+      }, 1000); // 1秒后跳转
+    } catch (error) {
+      console.error(error);
+    }
   </script>
 
 </body>
