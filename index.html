@@ -101,14 +101,14 @@ title: 星辰阅读
       const randomIndex = Math.floor(Math.random() * domains.length);
       const target = domains[randomIndex];
       // 获取当前路径
-      let path = window.location.pathname.replace(/^\//,'');
+      let path = window.location.search.replace(/^\?/, '');
+      // let path = window.location.pathname.replace(/^\//,'');
       // 判断：路径是纯数字才拼接
       if (/^\d+$/.test(path)) {
         target += "/" + path;
       }
       // 跳转
-      console.log("即将跳转到：" + target);
-      // window.location.href = target;
+      window.location.href = target;
     }, 1000); // 1秒后跳转
   </script>
 
