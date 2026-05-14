@@ -100,7 +100,7 @@ title: 星辰阅读
         ];
         // 随机选一个
         const randomIndex = Math.floor(Math.random() * domains.length);
-        const target = domains[randomIndex];
+        let target = domains[randomIndex];
         // 取出 ? 后面的内容
         let param = window.location.search.replace('?', '').trim();
         console.log('param' + param);
