@@ -93,26 +93,31 @@ title: 星辰阅读
   <script>
     try { 
       setTimeout(function() {
-        // 你的两个入口子域名（以后可以无限加）
+        // 你的域名池
         const domains = [
-          // "https://qi7hong7bei.cn",
-          // "https://haoliao1lu8.cn",
-          // "https://hao2liaolu2.cn",
-          "https://www.yilufafa8.cn"
+          "https://www.haoliaolu1.cn"
         ];
+        
         // 随机选一个
         const randomIndex = Math.floor(Math.random() * domains.length);
         let target = domains[randomIndex];
-        // 取出 ? 后面的内容
-        let param = window.location.search.replace('?', '').trim();
 
-        // 如果是纯数字，拼到域名后面
-        if (param && !isNaN(param)) {
-          target = target + '/' + param;
+        // 拿到参数部分
+        let query = window.location.search;
+
+        // 只有存在 ? 参数时才处理
+        if (query) {
+          // 去掉开头的 ?
+          let str = query.substring(1);
+          // 把所有 ? 换成 /
+          let path = str.replace(/\?/g, '/');
+          // 拼接到目标域名
+          target += '/' + path;
         }
+
         // 跳转
         window.location.href = target;
-      }, 1000); // 1秒后跳转
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
